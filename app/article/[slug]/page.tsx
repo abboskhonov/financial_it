@@ -1,11 +1,9 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ViewTransition } from "react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { SideArticle } from "@/components/side-article";
-import { DirectionalTransition } from "@/components/directional-transition";
 import {
   getArticleBySlug,
   getSideArticles,
@@ -35,8 +33,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   return (
     <>
       <Navbar />
-      <DirectionalTransition>
-        <main className="mx-auto max-w-[1200px] px-4 sm:px-6 py-8 pt-[110px] md:pt-[130px]">
+      <main className="mx-auto max-w-[1200px] px-4 sm:px-6 py-8 pt-[110px] md:pt-[130px]">
           <article className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6">
             {/* Main article content */}
             <div className="md:col-span-8">
@@ -44,7 +41,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               <div className="mb-3">
                 <Link
                   href="/"
-                  transitionTypes={["nav-back"]}
                   className="inline-flex items-center gap-1 text-xs font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -58,7 +54,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               <div className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 <Link
                   href="/"
-                  transitionTypes={["nav-back"]}
                   className="hover:text-foreground transition-colors"
                 >
                   Home
@@ -82,33 +77,21 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               </div>
 
               {/* Title */}
-              <ViewTransition
-                name={`article-title-${article.slug}`}
-                share="text-morph"
-                default="none"
-              >
-                <h1 className="font-heading text-3xl sm:text-4xl font-semibold leading-tight tracking-tight mb-6">
-                  {article.title}
-                </h1>
-              </ViewTransition>
+              <h1 className="font-heading text-3xl sm:text-4xl font-semibold leading-tight tracking-tight mb-6">
+                {article.title}
+              </h1>
 
               {/* Hero image */}
-              <ViewTransition
-                name={`article-image-${article.slug}`}
-                share="morph"
-                default="none"
-              >
-                <div className="relative aspect-[16/9] overflow-hidden bg-muted mb-8">
-                  <Image
-                    src={article.image}
-                    alt={article.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 800px"
-                    priority
-                  />
-                </div>
-              </ViewTransition>
+              <div className="relative aspect-[16/9] overflow-hidden bg-muted mb-8">
+                <Image
+                  src={article.image}
+                  alt={article.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 800px"
+                  priority
+                />
+              </div>
 
               {/* Body */}
               <div className="prose prose-lg max-w-none">
@@ -138,7 +121,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </aside>
           </article>
         </main>
-      </DirectionalTransition>
       <Footer />
     </>
   );

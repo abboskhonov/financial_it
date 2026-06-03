@@ -3,7 +3,6 @@
 import { useState, useDeferredValue, useEffect, Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ViewTransition } from "react";
 import { IconSearch } from "@tabler/icons-react";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -26,7 +25,6 @@ function SearchResults({ query }: { query: string }) {
         <article key={article.id} className="group border-b border-border pb-6">
           <Link
             href={`/article/${article.slug}`}
-            transitionTypes={["nav-forward"]}
             className="block"
           >
             <h3 className="font-heading text-lg font-semibold leading-snug tracking-tight group-hover:text-muted-foreground transition-colors line-clamp-2">
@@ -88,9 +86,7 @@ function SearchContent() {
       </div>
 
       <div className="mt-10">
-        <ViewTransition key={deferredSearch} default="none">
-          <SearchResults query={deferredSearch} />
-        </ViewTransition>
+        <SearchResults query={deferredSearch} />
       </div>
     </>
   );
@@ -100,29 +96,25 @@ export default function SearchPage() {
   return (
     <>
       <Navbar />
-      <ViewTransition enter="slide-up" default="none">
-        <main className="mx-auto max-w-[1200px] px-4 sm:px-6 py-8 pt-[110px] md:pt-[130px]">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-4">
-            <Link
-              href="/"
-              transitionTypes={["nav-back"]}
-              className="font-heading text-xl italic"
-            >
-              The Hawaii
-            </Link>
-            <Link
-              href="/"
-              transitionTypes={["nav-back"]}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              CLOSE
-            </Link>
-          </div>
+      <main className="mx-auto max-w-[1200px] px-4 sm:px-6 py-8 pt-[110px] md:pt-[130px]">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <Link
+            href="/"
+            className="font-heading text-xl italic"
+          >
+            The Hawaii
+          </Link>
+          <Link
+            href="/"
+            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          >
+            CLOSE
+          </Link>
+        </div>
 
-          <SearchContent />
-        </main>
-      </ViewTransition>
+        <SearchContent />
+      </main>
       <Footer />
     </>
   );

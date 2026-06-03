@@ -74,7 +74,6 @@ export function Navbar() {
 
   return (
     <header
-      style={{ viewTransitionName: "persistent-nav" }}
       className={`fixed top-0 left-0 right-0 z-50 bg-background transition-shadow duration-300 ${
         scrolled ? "shadow-md" : ""
       }`}
@@ -146,7 +145,6 @@ export function Navbar() {
 
             <Link
               href="/search"
-              transitionTypes={["nav-forward"]}
               aria-label="Search"
               className="p-1 hover:text-muted-foreground transition-colors"
             >

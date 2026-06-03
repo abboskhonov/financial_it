@@ -34,7 +34,6 @@ export function CategorySection({ title, articles, categorySlug }: CategorySecti
           <article key={article.id} className="group">
             <Link
               href={`/article/${article.slug}`}
-              transitionTypes={["nav-forward"]}
               className="block"
             >
               <div className="relative aspect-[4/3] overflow-hidden bg-muted">
@@ -50,7 +49,6 @@ export function CategorySection({ title, articles, categorySlug }: CategorySecti
             <div className="mt-3">
               <Link
                 href={`/article/${article.slug}`}
-                transitionTypes={["nav-forward"]}
               >
                 <h3 className="font-heading text-sm font-semibold leading-snug tracking-tight group-hover:text-muted-foreground transition-colors line-clamp-2">
                   {article.title}
