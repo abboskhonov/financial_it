@@ -141,10 +141,52 @@
     --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* ─── View Transitions ─── */
+:root {
+  --vt-duration: 200ms;
+}
+
+@keyframes vt-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes vt-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+::view-transition-old(.page-exit) {
+  animation: var(--vt-duration) ease-in both vt-fade-out;
+}
+::view-transition-new(.page-enter) {
+  animation: var(--vt-duration) ease-out both vt-fade-in;
+}
+
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-group(persistent-footer) {
+  animation: none;
+  z-index: 100;
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
     }
+
   body {
     @apply bg-background text-foreground font-body;
     }
@@ -155,4 +197,15 @@
     @apply font-sans;
     }
 }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee linear infinite;
+}
+
+
 

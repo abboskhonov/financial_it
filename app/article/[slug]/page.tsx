@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { SideArticle } from "@/components/side-article";
+import { PageTransition } from "@/components/directional-transition";
 import {
   getArticleBySlug,
   getSideArticles,
@@ -33,7 +34,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   return (
     <>
       <Navbar />
-      <main className="mx-auto max-w-[1200px] px-4 sm:px-6 py-8 pt-[110px] md:pt-[130px]">
+      <PageTransition>
+      <main className="mx-auto max-w-[1200px] px-4 sm:px-6 py-8">
           <article className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6">
             {/* Main article content */}
             <div className="md:col-span-8">
@@ -41,7 +43,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               <div className="mb-3">
                 <Link
                   href="/"
-                  className="inline-flex items-center gap-1 text-xs font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+className="inline-flex items-center gap-1 text-xs font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -82,7 +84,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               </h1>
 
               {/* Hero image */}
-              <div className="relative aspect-[16/9] overflow-hidden bg-muted mb-8">
+              <div className="relative aspect-[16/9] overflow-hidden bg-muted mb-8" style={{ viewTransitionName: "none" }}>
                 <Image
                   src={article.image}
                   alt={article.title}
@@ -108,7 +110,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
             {/* Sidebar — more stories */}
             <aside className="md:col-span-4">
-              <div className="sticky top-[110px] md:top-[130px]">
+              <div className="sticky top-6">
                 <h3 className="font-heading text-sm font-semibold uppercase tracking-wider mb-4 pb-2 border-b border-border">
                   More Stories
                 </h3>
@@ -121,6 +123,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </aside>
           </article>
         </main>
+      </PageTransition>
       <Footer />
     </>
   );

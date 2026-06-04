@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Libre_Baskerville, Inter, Lora } from "next/font/google";
+import Script from "next/script";
 
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { SITE_NAME } from "@/lib/config";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const libre = Libre_Baskerville({
   subsets: ["latin"],
@@ -44,9 +46,13 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn("antialiased", inter.variable, libre.variable, lora.variable)}
+      suppressHydrationWarning
     >
       <body className="bg-background text-foreground font-body">
-        {children}
+        <Script id="theme-init" strategy="beforeInteractive">{
+          `(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches)){document.documentElement.classList.add("dark")}else{document.documentElement.classList.remove("dark")}}catch(e){}})()`
+        }</Script>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
