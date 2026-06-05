@@ -5,13 +5,16 @@ import { HeroArticle } from "@/components/hero-article";
 import { SideArticle } from "@/components/side-article";
 import { CategorySection } from "@/components/category-section";
 import { AdLeaderboard } from "@/components/ad-leaderboard";
+import { AdMPU } from "@/components/ad-mpu";
+import { AdInline } from "@/components/ad-inline";
 import { NewsletterSignup } from "@/components/newsletter-signup";
+import { NewsletterStrip } from "@/components/newsletter-strip";
 import { BreakingBadge } from "@/components/breaking-badge";
 import { PageTransition } from "@/components/directional-transition";
 import { FeaturedVideos } from "@/components/featured-videos";
 import { IntelligenceSection } from "@/components/intelligence-section";
 import { EventsSection } from "@/components/events-section";
-import { MagazineSection } from "@/components/magazine-section";
+
 import { TopStories } from "@/components/top-stories";
 import {
   getFeaturedArticles,
@@ -34,8 +37,8 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <BreakingBadge />
       <AdLeaderboard />
+      <BreakingBadge />
       <PageTransition>
       <main className="mx-auto max-w-[1200px] px-5 sm:px-6 py-8">
         {/* 3-column layout */}
@@ -68,6 +71,9 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* Newsletter — full-width strip */}
+        <NewsletterStrip />
+
         {/* Category sections */}
         <CategorySection
           title="Banking"
@@ -79,6 +85,12 @@ export default function HomePage() {
           articles={payments}
           categorySlug="payments"
         />
+
+        {/* Mid-page ad zone */}
+        <section className="mt-14">
+          <AdInline />
+        </section>
+
         <CategorySection
           title="Fintech"
           articles={fintech}
@@ -94,7 +106,7 @@ export default function HomePage() {
         <FeaturedVideos />
         <IntelligenceSection />
         <EventsSection />
-        <MagazineSection />
+
       </main>
       </PageTransition>
       <Footer />

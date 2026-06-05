@@ -42,7 +42,7 @@ export function CategorySection({ title, articles, categorySlug }: CategorySecti
                     src={article.image}
                     alt={article.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                    className="object-cover"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>

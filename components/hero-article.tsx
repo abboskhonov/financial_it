@@ -18,7 +18,7 @@ export function HeroArticle({ article }: HeroArticleProps) {
             src={article.image}
             alt={article.title}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+            className="object-cover"
             sizes="(max-width: 768px) 100vw, 800px"
             priority
           />

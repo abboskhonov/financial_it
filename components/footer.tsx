@@ -29,6 +29,12 @@ const footerLinks = [
       { label: "Cookies", href: "/cookies" },
     ],
   },
+  {
+    title: "Resources",
+    links: [
+      { label: "Style Guide", href: "/style-guide" },
+    ],
+  },
 ];
 
 export function Footer() {

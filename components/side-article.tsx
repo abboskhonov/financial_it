@@ -34,7 +34,7 @@ export function SideArticle({ article }: SideArticleProps) {
           src={article.image}
           alt={article.title}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          className="object-cover"
           sizes="64px"
         />
       </Link>
